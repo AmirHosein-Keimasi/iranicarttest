@@ -1,2 +1,56 @@
 @import "tailwindcss";
 
+@theme {
+  /* رنگ‌های سفارشی */
+  --color-primary-100: #2752E7;
+  --color-primary-80: #5275EC;
+  --color-primary-60: #7D97F1;
+  --color-primary-40: #D0DBFF;
+  --color-primary-20: #F5F8FE;
+
+  --color-base-100: #111111;
+  --color-base-80: #707070;
+  --color-base-60: #A0A0A0;
+  --color-base-40: #CFCFCF;
+  --color-base-20: #E3E3E3;
+  --color-base-0: #FFFFFF;
+
+  --color-error-100: #E25C5C;
+  --color-error-80: #E87D7D;
+  --color-error-60: #EE9D9D;
+  --color-error-40: #F3BEBE;
+  --color-error-20: #F9DEDE;
+
+  --color-success-100: #53D258;
+  --color-success-80: #75DB79;
+  --color-success-60: #98E49B;
+  --color-success-40: #BAEDBC;
+  --color-success-20: #DDF6DE;
+
+  --color-warning-100: #cc4c10;
+  /* تنظیمات فونت‌سایز */
+  --font-size-h1: 40px;
+  --line-height-h1: 125%;
+
+  --font-size-h2: 32px;
+  --line-height-h2: 125%;
+
+  --font-size-h3: 30px;
+  --line-height-h3: 125%;
+
+  --font-size-h4: 28px;
+  --line-height-h4: 130%;
+
+  --font-size-h5: 22px;
+  --line-height-h5: 135%;
+
+  /* فونت‌سایزهای Body */
+  --font-size-sb-xxl: 20px;
+  --line-height-sb-xxl: 130%;
+
+  /* ... سایر فونت‌سایزها به همین شکل */
+}
+
+/* @tailwind base;
+@tailwind components; */
+@tailwind utilities;
