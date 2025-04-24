@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import ReactQueryProviders from "./ReactQueryProviders";
-
+import Header from "@/header/Header";
 
 const vazirmatn = Vazirmatn({
   subsets: ["latin", "arabic"],
@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" className={vazirmatn.className}>
       <body>
-        <ReactQueryProviders>{children}</ReactQueryProviders> {/* 👈 اینجا پیچیدیمش */}
+        <Header />
+        <ReactQueryProviders>{children}</ReactQueryProviders>{" "}
+        {/* 👈 اینجا پیچیدیمش */}
       </body>
     </html>
   );
