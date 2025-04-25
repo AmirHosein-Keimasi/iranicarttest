@@ -1,5 +1,4 @@
-// app/header/NavLinks.tsx
-import Link from 'next/link';
+import Link from "next/link";
 
 const navItems = [
   { name: "پشتیبانی", href: "/support" },
@@ -15,7 +14,7 @@ export default function NavLinks() {
         <Link
           key={item.href}
           href={item.href}
-          className="text-gray-700 hover:text-blue-600 transition-colors"
+          className="text-base-100 hover:text-primary-60 m-3.5 transition-colors"
         >
           {item.name}
         </Link>

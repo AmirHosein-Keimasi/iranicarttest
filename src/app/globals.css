@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  /* رنگ‌های سفارشی */
   --color-primary-100: #2752E7;
   --color-primary-80: #5275EC;
   --color-primary-60: #7D97F1;
@@ -28,7 +27,7 @@
   --color-success-20: #DDF6DE;
 
   --color-warning-100: #cc4c10;
-  /* تنظیمات فونت‌سایز */
+
   --font-size-h1: 40px;
   --line-height-h1: 125%;
 
@@ -44,11 +43,9 @@
   --font-size-h5: 22px;
   --line-height-h5: 135%;
 
-  /* فونت‌سایزهای Body */
   --font-size-sb-xxl: 20px;
   --line-height-sb-xxl: 130%;
 
-  /* ... سایر فونت‌سایزها به همین شکل */
 }
 
 /* @tailwind base;
