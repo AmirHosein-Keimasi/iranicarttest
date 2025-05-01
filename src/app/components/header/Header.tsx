@@ -18,7 +18,7 @@ export default function Header() {
 
           <div className="hidden md:block">
             <Link
-              href="/login"
+              href="/auth/signin"
               className="bg-primary-100 text-base-0 px-4 py-2 rounded-md hover:bg-primary-80 transition-colors"
             >
               ورود/ثبت‌نام

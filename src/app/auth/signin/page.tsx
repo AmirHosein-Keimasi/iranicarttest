@@ -34,13 +34,15 @@ export default function LoginPage() {
   return (
     <AuthLayout>
       <div className="flex justify-start gap-1 text-sm font-semibold mb-6 text-Base-100">
-        <span className="cursor-pointer">ثبت‌نام</span>
+        <span className="">ثبت‌نام</span>
         <span className="">|</span>
-        <span className="font-bold cursor-pointer">ورود</span>
+        <span className="font-bold ">ورود</span>
       </div>
 
       <p className="text-sm text-base-80 mb-2">سلام!</p>
-      <p className="text-sm text-base-80 mb-2">لطفاً شماره موبایل خود را وارد کنید.</p>
+      <p className="text-sm text-base-80 mb-2">
+        لطفاً شماره موبایل خود را وارد کنید.
+      </p>
 
       <FloatingInput
         label="شماره موبایل"
@@ -59,8 +61,14 @@ export default function LoginPage() {
         {isLoading ? "در حال ارسال..." : "ورود"}
       </button>
 
-      {error && <p className="text-xs mt-2 text-error-100">خطایی رخ داد. لطفاً دوباره تلاش کنید.</p>}
-      {data?.message && <p className="text-xs mt-2 text-success-100">{data.message}</p>}
+      {error && (
+        <p className="text-xs mt-2 text-error-100">
+          خطایی رخ داد. لطفاً دوباره تلاش کنید.
+        </p>
+      )}
+      {data?.message && (
+        <p className="text-xs mt-2 text-success-100">{data.message}</p>
+      )}
     </AuthLayout>
   );
 }
