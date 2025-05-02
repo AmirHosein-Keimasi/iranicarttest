@@ -23,4 +23,4 @@ export default function page() {
   );
 }
 
-// بدون "use client"
+

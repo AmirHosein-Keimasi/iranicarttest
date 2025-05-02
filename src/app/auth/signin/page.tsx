@@ -4,31 +4,45 @@ import AuthLayout from "@/app/components/AuthLayout";
 import FloatingInput from "@/app/components/FloatingInput";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useLoginMutation } from "@/app/hooks/useLoginMutation";
 
 export default function LoginPage() {
   const [phone, setPhone] = useState("");
-  const { mutate, isLoading, error, data } = useLoginMutation();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const isValid = /^09\d{9}$/.test(phone);
     if (!isValid) {
       alert("شماره موبایل معتبر نیست.");
       return;
     }
 
-    mutate(phone, {
-      onSuccess: (data) => {
-        console.log("Login Success:", data);
-        // مثلا ذخیره در localStorage یا رفتن به صفحه بعد:
-        // localStorage.setItem("token", data.token || "");
-        router.push("/verify-code");
-      },
-      onError: (err) => {
-        console.error("Login Error:", err);
-      },
-    });
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/send-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone }),
+      });
+
+      const result = await res.json();
+      setData(result);
+
+      if (result.success) {
+        alert("کد تایید با موفقیت ارسال شد."); // ✅ نمایش alert
+        router.push(`/auth/verify-code?phone=${encodeURIComponent(phone)}`);
+      } else {
+        setError(result.message || "خطایی رخ داد.");
+      }
+    } catch (e) {
+      setError("خطا در برقراری ارتباط با سرور.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -66,9 +80,9 @@ export default function LoginPage() {
           خطایی رخ داد. لطفاً دوباره تلاش کنید.
         </p>
       )}
-      {data?.message && (
+      {/* {data?.message && (
         <p className="text-xs mt-2 text-success-100">{data.message}</p>
-      )}
+      )} */}
     </AuthLayout>
   );
 }
