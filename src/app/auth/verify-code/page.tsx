@@ -4,6 +4,7 @@ import AuthLayout from "@/app/components/AuthLayout";
 import FloatingInput from "@/app/components/FloatingInput";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function VerifyPage() {
   const [code, setCode] = useState("");
@@ -21,6 +22,10 @@ export default function VerifyPage() {
   const handleVerify = async () => {
     if (!code || !phone) {
       setError("شماره یا کد وارد نشده است.");
+      toast.error(error, {
+        position: "bottom-right",
+      });
+
       return;
     }
 
@@ -36,13 +41,18 @@ export default function VerifyPage() {
 
       const result = await res.json();
 
-      if (result.success) {
-        router.push("/dashboard"); // مسیر بعد از تأیید موفق
-      } else {
-        setError(result.message || "کد صحیح نیست.");
+      if (result.success && result.token) {
+        localStorage.setItem("token", result.token);
+        toast.success("ورود با موفقیت انجام شد ", {
+          position: "bottom-right",
+        });
+        router.push("/dashboard");
       }
     } catch (e) {
       setError("خطا در ارتباط با سرور.");
+      toast.error(error, {
+        position: "bottom-right",
+      });
     } finally {
       setIsLoading(false);
     }

@@ -4,6 +4,7 @@ import AuthLayout from "@/app/components/AuthLayout";
 import FloatingInput from "@/app/components/FloatingInput";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
   const [phone, setPhone] = useState("");
@@ -15,7 +16,9 @@ export default function LoginPage() {
   const handleLogin = async () => {
     const isValid = /^09\d{9}$/.test(phone);
     if (!isValid) {
-      alert("شماره موبایل معتبر نیست.");
+      toast.error("شماره موبایل معتبر نیست.", {
+        position: "bottom-right",
+      });
       return;
     }
 
@@ -33,13 +36,21 @@ export default function LoginPage() {
       setData(result);
 
       if (result.success) {
-        alert("کد تایید با موفقیت ارسال شد."); // ✅ نمایش alert
+        toast.success("کد تایید با موفقیت ارسال شد.", {
+          position: "bottom-right",
+        });
         router.push(`/auth/verify-code?phone=${encodeURIComponent(phone)}`);
       } else {
         setError(result.message || "خطایی رخ داد.");
+        toast.error(error, {
+          position: "bottom-right",
+        });
       }
     } catch (e) {
       setError("خطا در برقراری ارتباط با سرور.");
+      toast.error(error, {
+        position: "bottom-right",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -60,7 +71,6 @@ export default function LoginPage() {
 
       <FloatingInput
         label="شماره موبایل"
-        type="tel"
         variant="primary"
         className="mt-4"
         value={phone}

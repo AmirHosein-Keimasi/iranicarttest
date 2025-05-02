@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import Header from "@/app/components/header/Header";
-
+import { ToastContainer } from "react-toastify";
 
 import ReactQueryProviders from "./ReactQueryProviders";
-
 
 import "./globals.css";
 
@@ -27,7 +26,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" className={vazirmatn.className}>
       <body>
         <Header />
-        <ReactQueryProviders>{children}</ReactQueryProviders>{" "}
+        <ReactQueryProviders>{children}</ReactQueryProviders> <ToastContainer />
       </body>
     </html>
   );
